@@ -1,0 +1,16 @@
+pre_build:
+  image: index.caicloud.io/caicloud/golang:1.6
+  environment:
+    - WORKDIR=/go/src/github.com/superxi911/project-b
+  commands:
+    - mkdir -p $WORKDIR
+    - cp ./ -rf $WORKDIR
+    - cd /go/src/
+    - git clone https://github.com/superxi911/lib-a.git
+    - cd $WORKDIR
+    - go build -v .
+  outputs:
+    - /go/src/github.com/superxi911/project-b/project-b
+
+build:
+  dockerfile_name: Dockerfile
