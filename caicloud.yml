@@ -1,12 +1,12 @@
 pre_build:
   image: index.caicloud.io/caicloud/golang:1.6
+  volumes:
+    - .:/go/src/github.com/superxi911/project-b
   environment:
     - WORKDIR=/go/src/github.com/superxi911/project-b
   commands:
     - pwd
     - ls
-    - mkdir -p $WORKDIR
-    - cp ./ -rf $WORKDIR
     - cd /go/src/
     - git clone https://github.com/superxi911/lib-a.git
     - cd $WORKDIR
