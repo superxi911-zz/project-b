@@ -21,4 +21,7 @@ node {
   echo "JENKINS_URL'${env.JENKINS_URL}'"
   echo "BUILD_URL'${env.BUILD_URL}'"
   echo "JOB_URL'${env.JOB_URL}'"
+  
+  echo "displayName'${currentBuild.displayName}'"
+  echo "description'${currentBuild.description}'"
 }
