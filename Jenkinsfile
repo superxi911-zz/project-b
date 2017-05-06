@@ -1,3 +1,4 @@
 node {
-  echo "test"
+  echo "test ENV"
+  echo "BUILD_NUMBER'${env.BUILD_NUMBER}'"
 }
