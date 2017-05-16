@@ -45,7 +45,8 @@ node {
       if (params.autoGitTag) {
         echo "auto git tag: " + params.imageTag
         withCredentials ([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'superxi911', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]){
-          sh "git tag $imageTag && git push origin $imageTag" 
+          sh("git tag $imageTag")
+          sh("git push https://${GIT_USERNAME}:${GIT_PASSWORD}@<REPO> $imageTag")
         }
       }
     } else {
