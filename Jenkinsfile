@@ -24,4 +24,18 @@ node {
   
   echo "displayName'${currentBuild.displayName}'"
   echo "description'${currentBuild.description}'"
+  
+  stage('Checkout') {
+        echo "check out"   
+        checkout scm
+    }
+    
+    stage('Intergration') {
+        echo "Intergration"   
+        if (params.intergration) {
+            echo "do intergration"
+        } else {
+            echo "skip intergration"
+        }
+    }
 }
