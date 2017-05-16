@@ -1,5 +1,5 @@
 From busybox
 
-COPY project-b /
+#COPY project-b /
 
-CMD ["./project-b"]
+#CMD ["./project-b"]
