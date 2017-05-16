@@ -41,6 +41,10 @@ node {
   stage('publish') {
     if (params.publish) {
       echo "do publish"
+      echo "docker build image tag: " + params.imageTag
+      if (params.autoGitTag) {
+        echo "auto git tag: " + params.imageTag
+      }
     } else {
       echo "skip publish"
     }
