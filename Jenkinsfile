@@ -45,7 +45,7 @@ node {
       if (params.autoGitTag) {
         echo "auto git tag: " + params.imageTag
         
-        sh "git tag $imageTag && git push origin $imageTag" 
+        sh "git tag $imageTag && git push $imageTag" 
       }
     } else {
       echo "skip publish"
