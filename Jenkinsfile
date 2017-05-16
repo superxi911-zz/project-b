@@ -30,11 +30,11 @@ node {
         checkout scm
   }
   
-  stage('Integration') {
-    if (params.Integration) {
-      echo "do Integration"
+  stage('integration') {
+    if (params.integration) {
+      echo "do integration"
     } else {
-      echo "skip Integration"
+      echo "skip integration"
     }
   }
 
