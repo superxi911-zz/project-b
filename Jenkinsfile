@@ -44,6 +44,8 @@ node {
       echo "docker build image tag: " + params.imageTag
       if (params.autoGitTag) {
         echo "auto git tag: " + params.imageTag
+        
+        sh ''git tag''
       }
     } else {
       echo "skip publish"
