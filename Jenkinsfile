@@ -44,7 +44,7 @@ node {
       echo "docker build image tag: " + params.imageTag
       if (params.autoGitTag) {
         echo "auto git tag: " + params.imageTag
-        withCredentials ([[$class: 'FileBinding', credentialsId: 'superxi911', variable: 'SECRET_FILE']]){
+        withCredentials ([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'superxi911', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]){
           sh "git tag $imageTag && git push origin $imageTag" 
         }
       }
