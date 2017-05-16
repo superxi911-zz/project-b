@@ -53,7 +53,7 @@ node {
   stage('deploy') {
     if (params.deploy) {
       echo "do deploy"
-      echo "deploy to $deployTO"
+      echo "deploy to " + params.deployTarget
     } else {
       echo "skip deploy"
     }
