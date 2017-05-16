@@ -44,8 +44,9 @@ node {
       echo "docker build image tag: " + params.imageTag
       if (params.autoGitTag) {
         echo "auto git tag: " + params.imageTag
-        
-        sh "git tag $imageTag && git push origin $imageTag" 
+        withCredentials [[$class: 'FileBinding', credentialsId: 'superxi911']{
+          sh "git tag $imageTag && git push origin $imageTag" 
+        }
       }
     } else {
       echo "skip publish"
