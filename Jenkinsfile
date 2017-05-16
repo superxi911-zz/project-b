@@ -28,14 +28,30 @@ node {
   stage('Checkout') {
         echo "check out"   
         checkout scm
+  }
+  
+  stage('Intergration') {
+    if (params.intergration) {
+      echo "do intergration"
+    } else {
+      echo "skip intergration"
     }
-    
-    stage('Intergration') {
-        echo "Intergration"   
-        if (params.intergration) {
-            echo "do intergration"
-        } else {
-            echo "skip intergration"
-        }
+  }
+
+  stage('publish') {
+    if (params.publish) {
+      echo "do publish"
+    } else {
+      echo "skip publish"
     }
+  }
+  
+  stage('deploy') {
+    if (params.deploy) {
+      echo "do deploy"
+      echo "deploy to $deployTO"
+    } else {
+      echo "skip deploy"
+    }
+  }
 }
