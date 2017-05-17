@@ -58,6 +58,11 @@ node {
     if (params.deploy) {
       echo "do deploy"
       echo "deploy to " + params.deployTarget
+      if (params.deployTarget == "stage") {
+        withCredentials([[$class: 'FileBinding', credentialsId: 'cluster57', variable: 'SECRET_FILE']]) {
+          sh 'kubectl --kubeconfig=$SECRET_FILE get pod'
+        }
+      }
     } else {
       echo "skip deploy"
     }
