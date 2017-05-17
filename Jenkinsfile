@@ -58,10 +58,20 @@ node {
     if (params.deploy) {
       echo "do deploy"
       echo "deploy to " + params.deployTarget
-      if (params.deployTarget == "stage") {
-        withCredentials([[$class: 'FileBinding', credentialsId: 'cluster-57', variable: 'SECRET_FILE']]) {
+      if (params.deployTarget == "test") {
+        withCredentials([[$class: 'FileBinding', credentialsId: 'kubeconfig-test', variable: 'SECRET_FILE']]) {
           sh 'kubectl --kubeconfig=$SECRET_FILE get pod'
         }
+      } else if (params.deployTarget == "stage") {
+        withCredentials([[$class: 'FileBinding', credentialsId: 'kubeconfig-stage', variable: 'SECRET_FILE']]) {
+          sh 'kubectl --kubeconfig=$SECRET_FILE get pod'
+        }
+      } else if (params.deployTarget == "prod") {
+        withCredentials([[$class: 'FileBinding', credentialsId: 'kubeconfig-prod', variable: 'SECRET_FILE']]) {
+          sh 'kubectl --kubeconfig=$SECRET_FILE get pod'
+        }
+      } else {
+        // do nothing
       }
     } else {
       echo "skip deploy"
