@@ -57,13 +57,13 @@ node {
   stage('deploy') {
     def kubeconfig = "kubeconfig-" + params.deployTarget
     echo kubeconfig
-/*    
+
     if (params.deploy) {
       echo "do deploy"
       
       if (params.deployTarget == "test") {
         echo "deploy to test cluster"
-        withCredentials([[$class: 'FileBinding', credentialsId: 'kubeconfig-test', variable: 'SECRET_FILE']]) {
+        withCredentials([[$class: 'FileBinding', credentialsId: ${kubeconfig}, variable: 'SECRET_FILE']]) {
           sh 'kubectl --kubeconfig=$SECRET_FILE get ns'
         }
       } else if (params.deployTarget == "stage") {
@@ -82,6 +82,5 @@ node {
     } else {
       echo "skip deploy"
     }
-*/
   }
 }
