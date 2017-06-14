@@ -55,6 +55,9 @@ node {
   }
   
   stage('deploy') {
+    def kubeconfig = "kubeconfig-" + params.deployTarget
+    echo kubeconfig
+/*    
     if (params.deploy) {
       echo "do deploy"
       
@@ -79,5 +82,6 @@ node {
     } else {
       echo "skip deploy"
     }
+*/
   }
 }
