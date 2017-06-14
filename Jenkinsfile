@@ -55,29 +55,12 @@ node {
   }
   
   stage('deploy') {
-    def kubeconfig = "kubeconfig-" + params.deployTarget
-    echo kubeconfig
-
     if (params.deploy) {
       echo "do deploy"
-      
-      if (params.deployTarget == "test") {
-        echo "deploy to test cluster"
-        withCredentials([[$class: 'FileBinding', credentialsId: kubeconfig, variable: 'SECRET_FILE']]) {
-          sh 'kubectl --kubeconfig=$SECRET_FILE get ns'
-        }
-      } else if (params.deployTarget == "stage") {
-        echo "deploy to stage cluster"
-        withCredentials([[$class: 'FileBinding', credentialsId: 'kubeconfig-stage', variable: 'SECRET_FILE']]) {
-          sh 'kubectl --kubeconfig=$SECRET_FILE get ns'
-        }
-      } else if (params.deployTarget == "prod") {
-        echo "deploy to prod cluster"
-        withCredentials([[$class: 'FileBinding', credentialsId: 'kubeconfig-prod', variable: 'SECRET_FILE']]) {
-          sh 'kubectl --kubeconfig=$SECRET_FILE get ns'
-        }
-      } else {
-        // do nothing
+      def kubeconfig = "kubeconfig-" + params.deployTarget
+      echo "deploy to " + params.deployTarget + " cluster"
+      withCredentials([[$class: 'FileBinding', credentialsId: kubeconfig, variable: 'SECRET_FILE']]) {
+        sh 'kubectl --kubeconfig=$SECRET_FILE get ns'
       }
     } else {
       echo "skip deploy"
